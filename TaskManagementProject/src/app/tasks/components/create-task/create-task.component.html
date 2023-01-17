@@ -1,0 +1,38 @@
+<div class="container mt-4">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <fieldset>
+      <legend>Nova tarefa</legend>
+      <div class="row my-4">
+        <div class="col-4">
+          <mat-form-field appearance="outline">
+            <mat-label>Titulo</mat-label>
+            <input formControlName="title" matInput />
+          </mat-form-field>
+        </div>
+        <div class="col-3">
+          <mat-form-field appearance="outline">
+            <mat-label>Descrição</mat-label>
+            <textarea formControlName="description" matInput></textarea>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field appearance="outline">
+            <mat-label>Prioridade</mat-label>
+            <mat-select formControlName="level">
+              <mat-option *ngFor="let priority of priorities" [value]="priority.level">{{ priority.level}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </fieldset>
+    <div class="d-flex justify-content-end">
+      <button
+        type="submit"
+        mat-raised-button
+        color="primary"
+      >
+        Salvar
+      </button>
+    </div>
+  </form>
+</div>
