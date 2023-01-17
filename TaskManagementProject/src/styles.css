@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+body{
+  margin: 0;
+}
+
+h1{
+  font-family: 'Inria Sans', sans-serif;
+  font-size: 2.7rem;
+  margin-bottom: 5px;
+
+  color: white;
+}
+
+p{
+  font-family: 'IBM Plex Sans Thai', sans-serif;
+  font-size: 1.35em;
+  line-height: 1.25;
+  text-align: justify;
+
+  width: 90%;
+  margin-left: 15px;
+
+  color: white;
+}

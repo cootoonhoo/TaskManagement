@@ -1,7 +1,7 @@
 .Container{
   box-sizing: border-box;
 
-  width: 90vw;
+  width: 30vw;
   height: auto;
 
   max-width: 1300px;
@@ -14,25 +14,3 @@
   backdrop-filter: blur(2px);
   border-radius: 35px;
 }
-
-.InnerContent{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.Image, .Text {
-  padding: 15px;
-}
-
-img{
-  width: auto;
-  height: auto;
-
-  max-width: 400px;
-}
-
-h1,p {
-  color: white !important;
-}
-

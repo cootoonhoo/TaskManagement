@@ -1,10 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300&family=Inria+Sans:wght@700&display=swap");
 
-body{
-  margin: 0 0 0 0 !important;
-  padding: 0 0 0 0 !important;
-}
-
 .Content{
 height: 100vh;
 width: 100vw;
@@ -21,3 +16,4 @@ justify-content: center;
   background: -webkit-linear-gradient(225deg, hsla(291, 36%, 22%, 1) 0%, hsla(294, 40%, 25%, 1) 26%, hsla(297, 46%, 31%, 1) 44%, hsla(331, 45%, 40%, 1) 77%, hsla(358, 53%, 54%, 1) 100%);
   filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#46244c", endColorstr="#56275b", GradientType=1 );
 }
+
