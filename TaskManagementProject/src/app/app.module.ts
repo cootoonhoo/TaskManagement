@@ -7,6 +7,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { StyledButtonComponent } from "./styled-button/styled-button.component";
 import { CustomHeaderComponent } from './custom-header/custom-header.component';
 import { LoginComponent } from './login/login.component';
+import { BackgroundComponent } from './background/background.component';
 
 @NgModule({
     declarations: [
@@ -15,6 +16,7 @@ import { LoginComponent } from './login/login.component';
         StyledButtonComponent,
         CustomHeaderComponent,
         LoginComponent,
+        BackgroundComponent,
 
     ],
     providers: [],
