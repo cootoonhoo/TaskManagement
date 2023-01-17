@@ -1,0 +1,24 @@
+<form [formGroup]="loginForm" *ngIf="loginForm" #f = "ngForm" (ngSubmit)="submitForm()">
+
+  <mat-form-field appearance="fill">
+    <mat-label>Usuário</mat-label>
+    <input matInput placeholder="Digite seu usuário" formControlName="username" required>
+    <mat-error *ngIf="username.invalid">Por favor insira seu usuário</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Senha</mat-label>
+    <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <div class="buttons">
+    <button type="submit" class="btn btn-outline-info btn-block" [disabled]="loginForm.invalid" >Entrar</button>
+
+    <button  class="btn btn-outline-info btn-block" >Voltar</button>
+  </div>
+
+
+</form>
