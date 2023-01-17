@@ -2,7 +2,7 @@
   box-sizing: border-box;
 
   width: 90vw;
-  height: 70vh;
+  height: auto;
 
   max-width: 1300px;
   max-height: 815px;
@@ -25,12 +25,31 @@
   padding: 15px;
 }
 
+
 h1{
   font-family: 'Inria Sans', sans-serif;
-  font-size: 2rem;
+  font-size: 2.7rem;
+  margin-bottom: 5px;
 }
 
 p{
   font-family: 'IBM Plex Sans Thai', sans-serif;
-  font-size: 1.5em;
+  font-size: 1.35em;
+  line-height: 1.25;
+  text-align: justify;
+
+  width: 90%;
+  margin-left: 15px;
 }
+
+img{
+  width: auto;
+  height: auto;
+
+  max-width: 400px;;
+}
+
+h1,p {
+  color: white !important;
+}
+
