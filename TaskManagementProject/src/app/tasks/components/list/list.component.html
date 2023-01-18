@@ -1,9 +1,16 @@
 <div class="container">
   <div class="row my-4">
     <div class="filter-container d-flex justify-content-center mb-4" componentID="id">
-      <button class="filter-btn" mat-raised-button color="primary" (click)="getTasksByType('to-do')">to do</button>
+      <div>
+        <button class="filter-btn" mat-raised-button color="primary" (click)="getTasksByType('to-do')">to do</button>
       <button class="filter-btn" mat-raised-button color="primary" (click)="getTasksByType('done')">done</button>
       <button class="filter-btn" mat-raised-button color="primary" (click)="getTasksByType('')">all</button>
+      </div>
+      <div>
+        <button class="filter-btn" mat-raised-button color="primary" (click)="addTask()">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
     </div>
     <div class="col-3 mb-4" *ngFor="let task of tasks">
       <mat-card class="example-card" id="{{task.status.status}}">

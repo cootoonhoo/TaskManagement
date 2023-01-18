@@ -44,6 +44,10 @@ export class ListComponent implements OnInit{
     this.router.navigate(['/tasks']);
   }
 
+  public addTask(): void {
+    this.router.navigate(['/tasks/create'])
+  }
+
   public changeStatus(id: string): void {
     this.taskService.changeStatus(id);
 
