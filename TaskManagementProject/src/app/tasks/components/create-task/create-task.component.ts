@@ -1,3 +1,4 @@
+import { ActivatedRoute, Router } from '@angular/router';
 import { TasksService } from './../../services/tasks.service';
 import { TaskData } from './../../models/task-data.model';
 import { Component, OnInit } from '@angular/core';
@@ -12,15 +13,21 @@ import { PriorityData } from '../../models/priority-data.model';
 
 export class CreateTaskComponent implements OnInit {
 
-  constructor(private taskService: TasksService) { }
+  constructor(private taskService: TasksService, private router: Router, private activatedRouter: ActivatedRoute) { }
 
   public form!: FormGroup;
   public task!: TaskData;
   public priorities!: PriorityData[];
+  public taskId!: string;
 
   ngOnInit(): void {
     this.buildForm();
     this.getPriorities();
+    this.getRouterParam();
+
+    if (this.taskId) {
+      this.updateForm();
+    }
   }
 
   public buildForm(): void {
@@ -41,16 +48,31 @@ export class CreateTaskComponent implements OnInit {
   public onSubmit(): void {
     this.task = this.form.getRawValue();
 
-    this.taskService.createTask(this.task);
-    alert('Tarefa adicionada com sucesso');
+    if (this.taskId) {
+      this.taskService.editTask(this.task);
+      alert('Tarefa editada com sucesso!');
+    } else {
+      this.taskService.createTask(this.task);
+      alert('Tarefa cadastrada com sucesso!');
+    }
 
-    console.log(this.task)
 
     this.form.reset();
+    this.router.navigate(['/tasks'])
   }
 
   private getPriorities(): void {
     this.priorities = this.taskService.getPriority();
+  }
+
+  private getRouterParam() {
+    this.taskId = this.activatedRouter.snapshot.params['id'];
+    this.updateForm();
+  }
+
+  private updateForm(): void {
+    const task = this.taskService.getTaskById(this.taskId);
+    this.form.patchValue(task);
   }
 
 }

@@ -7,5 +7,5 @@ export interface TaskData {
   description: string,
   createdAt: Date,
   status: StatusData,
-  priority: PriorityData
+  priority?: PriorityData
 }

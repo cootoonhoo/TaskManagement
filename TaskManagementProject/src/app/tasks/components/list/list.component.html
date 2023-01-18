@@ -1,10 +1,15 @@
 <div class="container">
   <div class="row my-4">
+    <div class="filter-container d-flex justify-content-center mb-4" componentID="id">
+      <button class="filter-btn" mat-raised-button color="primary" (click)="getTasksByType('to-do')">to do</button>
+      <button class="filter-btn" mat-raised-button color="primary" (click)="getTasksByType('done')">done</button>
+      <button class="filter-btn" mat-raised-button color="primary" (click)="getTasksByType('')">all</button>
+    </div>
     <div class="col-3 mb-4" *ngFor="let task of tasks">
-      <mat-card class="example-card">
+      <mat-card class="example-card" id="{{task.status.status}}">
         <mat-card-header>
           <mat-card-title>{{ task.title }}</mat-card-title>
-          <mat-card-subtitle>{{ task.priority.level }}</mat-card-subtitle>
+          <mat-card-subtitle>{{ task.priority?.level }}</mat-card-subtitle>
         </mat-card-header>
         <mat-divider class="my-3"></mat-divider>
         <mat-card-content>
@@ -12,13 +17,13 @@
           <p><strong>Data: </strong>{{ task.createdAt | date: 'dd/MM/YYYY'}}</p>
         </mat-card-content>
         <mat-card-actions class="d-flex justify-content-center">
-          <!-- <button mat-icon-button> -->
+          <button mat-icon-button (click)="changeStatus(task.id)">
             <mat-checkbox></mat-checkbox>
-          <!-- </button> -->
-          <button mat-icon-button>
+          </button>
+          <button mat-icon-button (click)="editTask(task.id)">
             <mat-icon>mode_edit</mat-icon>
           </button>
-          <button mat-icon-button>
+          <button mat-icon-button (click)="deleteTask(task.id)">
             <mat-icon>delete</mat-icon>
           </button>
         </mat-card-actions>

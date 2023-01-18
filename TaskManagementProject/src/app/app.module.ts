@@ -16,6 +16,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatCardModule,
     MatDividerModule,
     MatIconModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

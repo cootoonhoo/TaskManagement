@@ -1,3 +1,10 @@
-<app-list></app-list>
+<mat-toolbar color="primary">
+  <button mat-button routerLink="/">teste</button>
+  <span class="spacer"></span>
+  <div class="menu">
+    <button mat-button routerLink="/tasks">minhas tarefas</button>
+    <button mat-button routerLink="/tasks/create">Cadastrar tarefa</button>
+  </div>
+</mat-toolbar>
 
-<!-- <app-create-task></app-create-task> -->
+<router-outlet></router-outlet>
