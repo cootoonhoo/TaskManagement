@@ -1,0 +1,44 @@
+img{
+  width: 200px;
+  height: auto;
+}
+
+hr{
+  height: 40px;
+  width: 1px;
+
+
+  border: none;
+  border-radius: 1px;
+  background-color:rgba(255, 255, 255, 0.75);
+}
+
+a{
+  padding: 10px 5px;
+
+  font-family: 'Inria Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  text-decoration: none;
+  /* identical to box height */
+
+  color: #FFFFFF;
+}
+
+a:hover{
+  background-color:rgba(255, 255, 255, 0.20)
+}
+
+.Button{
+  display: flex;
+  align-items: center;
+}
+
+.Content{
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
