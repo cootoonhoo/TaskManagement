@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PublicPage } from "./public-module/public-page.module";
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -26,6 +27,7 @@ import { PublicPage } from "./public-module/public-page.module";
         MatFormFieldModule,
         MatIconModule,
         PublicPage,
+        HttpClientModule
     ]
 })
 export class AppModule { }

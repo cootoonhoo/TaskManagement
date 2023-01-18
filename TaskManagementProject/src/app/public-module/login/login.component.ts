@@ -3,6 +3,12 @@ import { loginRequest } from '../models/loginRequest.model';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component } from '@angular/core';
 import { LoginService } from '../services/login.service';
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
+
 
 @Component({
   selector: 'app-login',
@@ -10,40 +16,32 @@ import { LoginService } from '../services/login.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
+  constructor(private loginService: LoginService, private router: Router) {}
+
   public loginForm: FormGroup = new FormGroup({
     username: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
   });
-
   public formData!: loginRequest;
-  private loginRequest!: LoginService;
-  private router!: Router;
   hide = true;
 
-
-  NgOnInit() {
-  }
-
-
+  NgOnInit() {}
 
   public submitForm(): void {
     this.formData = this.loginForm.getRawValue();
-    // this.loginRequest.login(this.formData).subscribe({
-    //   next: (response) => {
-    //     console.log(response);
-    //     localStorage.setItem('USER_TOKEN', response.token);
-    //     localStorage.setItem('USER', JSON.stringify(response.user));
-    //     this.router.navigate([]);
-    //   },
-    //   error: (err) => {
-    //     console.log(err)
-    //     alert("Usuário ou senha incorretos, tente novamente");
-    //     this.loginForm.reset();
-    //   }
-
-    // });
-
-    console.log(this.formData);
+    this.loginService.login(this.formData).subscribe({
+      next: (res) => {
+        console.log(res);
+        localStorage.setItem('USER_TOKEN', res.token);
+        localStorage.setItem('USER_ID', JSON.stringify(res.id));
+        this.router.navigate(['/']);
+      },
+      error: (err) => {
+        console.log(err);
+        alert('Usuário ou senha incorretos, tente novamente');
+        this.loginForm.reset();
+      },
+    });
   }
 
   get username() {

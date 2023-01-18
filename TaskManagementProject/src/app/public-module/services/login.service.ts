@@ -14,7 +14,7 @@ export class LoginService {
   constructor(private http: HttpClient, private router: Router) { }
 
   public login(payload: loginRequest):Observable<loginResponse> {
-    return this.http.post<loginResponse>('', payload);
+    return this.http.post<loginResponse>('https://localhost:7099/Token', payload);
   }
 
   public logout(): void {
