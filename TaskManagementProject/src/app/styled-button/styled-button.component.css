@@ -20,9 +20,11 @@ button{
 }
 
 
-.lined button{
-  background-color: transparent;
+.lined {
+  background: rgba(255, 255, 255, 0.1);
 }
+
+
 
 .solid button{
   background: rgba(255, 255, 255, 0.5);

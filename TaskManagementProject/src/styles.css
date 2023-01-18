@@ -1,16 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
 
 :root{
-  /* --backgroundColor1: #1ba8e9;
+  --backgroundColor1: #1ba8e9;
   --backgroundColor2: #1619b9;
   --backgroundColor3: #800f86;
-  --backgroundColor4: #ff057c; */
+  --backgroundColor4: #ff057c;
 
-   --backgroundColor1: #339194;
+  --backgroundColor1: #339194;
   --backgroundColor2: #fb6b41;
   --backgroundColor3: #f10c49;
   --backgroundColor4: #a70267;
 
+  --backgroundColor1: #000706;
+  --backgroundColor2: #00272d;
+  --backgroundColor3: #134647;
+  --backgroundColor4: #0c7e7e;
+
+  --fontColor: white;
 }
 
 body{
@@ -22,7 +28,7 @@ h1{
   font-size: 2.7rem;
   margin-bottom: 5px;
 
-  color: white;
+  color: var(--fontColor);
 }
 
 p{
@@ -34,5 +40,12 @@ p{
   width: 90%;
   margin-left: 15px;
 
+  color: var(--fontColor);
+}
+
+h2{
   color: white;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
