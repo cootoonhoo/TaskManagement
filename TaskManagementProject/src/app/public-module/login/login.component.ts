@@ -34,7 +34,7 @@ export class LoginComponent {
         console.log(res);
         localStorage.setItem('USER_TOKEN', res.token);
         localStorage.setItem('USER_ID', JSON.stringify(res.id));
-        this.router.navigate(['/']);
+        this.router.navigate(['/tasks']);
       },
       error: (err) => {
         console.log(err);

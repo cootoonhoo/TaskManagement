@@ -23,7 +23,6 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { HeaderComponent } from './header/header.component';
 
 
 
@@ -35,7 +34,6 @@ import { HeaderComponent } from './header/header.component';
         StyledButtonComponent,
         CustomHeaderComponent,
         BackgroundComponent,
-        HeaderComponent,
         TasksComponent,
         CreateTaskComponent,
         ListComponent,

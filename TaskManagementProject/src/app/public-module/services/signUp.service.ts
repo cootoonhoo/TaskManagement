@@ -6,15 +6,14 @@ import { signUpResponse } from '../models/signUpResponse.model';
 import { Router } from '@angular/router';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class SignUpService {
+  url: string = 'https://mindnoteapiwebapp.azurewebsites.net/Person';
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) {}
 
-  public signUp(payload: signUpRequest):Observable<signUpResponse> {
-    return this.http.post<signUpResponse>('https://mindnoteapi.azure-api.net/Person', payload);
+  public signUp(payload: signUpRequest): Observable<signUpResponse> {
+    return this.http.post<signUpResponse>(this.url, payload);
   }
-
 }

@@ -6,23 +6,20 @@ import { loginResponse } from '../models/loginResponse.model';
 import { Router } from '@angular/router';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class LoginService {
+  url: string = 'https://mindnoteapiwebapp.azurewebsites.net/token';
 
-  url : string = "https://mindnoteapiwebapp.azurewebsites.net/Person";
+  constructor(private http: HttpClient, private router: Router) {}
 
-  constructor(private http: HttpClient, private router: Router) { }
-
-  public login(payload: loginRequest):Observable<loginResponse> {
+  public login(payload: loginRequest): Observable<loginResponse> {
     return this.http.post<loginResponse>(this.url, payload);
   }
 
   public logout(): void {
     localStorage.removeItem('USER_TOKEN');
-    localStorage.removeItem('USER');
-    this.router.navigate(['']);
+    localStorage.removeItem('USER_ID');
+    this.router.navigate(['/']);
   }
-
 }
