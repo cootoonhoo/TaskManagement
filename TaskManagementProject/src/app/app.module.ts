@@ -9,6 +9,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PublicPage } from "./public-module/public-page.module";
 import { HttpClientModule } from '@angular/common/http';
+import { HomePageComponent } from './public-module/home-page/home-page.component';
+import { BackgroundComponent } from './background/background.component';
+import { CustomHeaderComponent } from './components/custom-header/custom-header.component';
+
+import { StyledButtonComponent } from './components/styled-button/styled-button.component';
 
 
 
@@ -16,6 +21,10 @@ import { HttpClientModule } from '@angular/common/http';
 @NgModule({
     declarations: [
         AppComponent,
+        HomePageComponent,
+        StyledButtonComponent,
+        CustomHeaderComponent,
+        BackgroundComponent,
     ],
     providers: [],
     bootstrap: [AppComponent],
@@ -26,7 +35,6 @@ import { HttpClientModule } from '@angular/common/http';
         MatInputModule,
         MatFormFieldModule,
         MatIconModule,
-        PublicPage,
         HttpClientModule
     ]
 })

@@ -14,7 +14,7 @@ export class SignUpService {
   constructor(private http: HttpClient, private router: Router) { }
 
   public signUp(payload: signUpRequest):Observable<signUpResponse> {
-    return this.http.post<signUpResponse>('https://localhost:7099/Person', payload);
+    return this.http.post<signUpResponse>('https://mindnoteapi.azure-api.net/Person', payload);
   }
 
 }

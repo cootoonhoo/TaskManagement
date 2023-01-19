@@ -5,7 +5,7 @@
     margin: 0;
     box-sizing: border-box;
 }
-.container{
+.gato{
     height: 100vh;
     width: 100vw;
     position: absolute;
@@ -16,7 +16,7 @@
     bottom: 0;
     overflow: hidden;
 }
-.container div{
+.gato div{
     position: absolute;
     border-radius: 50%;
     animation: gradient 4s infinite;
@@ -26,14 +26,14 @@
         transform: scale(1.2) translate(50px);
     }
 }
-.container div:nth-child(1){
+.gato div:nth-child(1){
     height: 90%;
     width: 80%;
     background-color: var(--backgroundColor1);
     left: -20%;
     top: -10%;
 }
-.container div:nth-child(2){
+.gato div:nth-child(2){
     height: 67%;
     width: 85%;
     background-color: var(--backgroundColor2);
@@ -41,7 +41,7 @@
     right: -26%;
     animation-delay: 1s;
   }
-  .container div:nth-child(3){
+  .gato div:nth-child(3){
     height: 75%;
     width: 60%;
     background-color: var(--backgroundColor3);
@@ -50,7 +50,7 @@
     animation-delay: 0.3s;
     border-radius: 30%;
 }
-.container div:nth-child(4){
+.gato div:nth-child(4){
     height: 75%;
     width: 75%;
     background-color: var(--backgroundColor4);
@@ -58,7 +58,7 @@
     left: -18%;
     animation-delay: 1.2s;
 }
-.container:after{
+.gato:after{
     position: absolute;
     content: "";
     height: 100%;

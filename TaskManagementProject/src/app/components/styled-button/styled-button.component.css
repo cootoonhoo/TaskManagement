@@ -19,15 +19,12 @@ button{
   transition: all 100ms;
 }
 
-
-.lined {
-  background: rgba(255, 255, 255, 0.1);
+.lined button{
+  background: none;
 }
 
-
-
 .solid button{
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.25);
 }
 
 button:hover{

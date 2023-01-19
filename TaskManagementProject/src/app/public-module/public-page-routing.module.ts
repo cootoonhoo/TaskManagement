@@ -3,12 +3,17 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { PublicPageComponent } from './public-page.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HomePageComponent } from './home-page/home-page.component';
 
 const routes: Routes = [
 
  {path: '',
     component: PublicPageComponent,
     children: [
+      {
+        path: 'home',
+        component: HomePageComponent
+      },
       {
         path: 'login',
         component: LoginComponent

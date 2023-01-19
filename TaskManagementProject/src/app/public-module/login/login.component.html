@@ -1,5 +1,7 @@
-<form [formGroup]="loginForm" *ngIf="loginForm" #f = "ngForm" (ngSubmit)="submitForm()">
-
+<div class="cachorro">
+<form [formGroup]="loginForm" *ngIf="loginForm" #f = "ngForm" >
+  <h2>Login</h2>
+  <hr>
   <mat-form-field appearance="fill">
     <mat-label>Usuário</mat-label>
     <input matInput placeholder="Digite seu usuário" formControlName="username" required>
@@ -9,16 +11,16 @@
   <mat-form-field appearance="fill">
     <mat-label>Senha</mat-label>
     <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
-    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" style="border: none; color: white; background: none;">
       <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
     </button>
   </mat-form-field>
 
   <div class="buttons">
-    <button type="submit" class="btn btn-outline-info btn-block" [disabled]="loginForm.invalid" >Entrar</button>
-
-    <button  class="btn btn-outline-info btn-block" >Voltar</button>
+    <button type="submit" [disabled]="loginForm.invalid" class="solid" (click)="submitForm()">Entrar</button>
+      <button   routerLink="/home" class="lined" style="background: none;">Voltar</button>
   </div>
 
 
 </form>
+</div>
