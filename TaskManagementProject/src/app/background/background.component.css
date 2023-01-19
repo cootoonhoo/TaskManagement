@@ -1,0 +1,67 @@
+*,
+*:before,
+*:after{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.gato{
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    overflow: hidden;
+}
+.gato div{
+    position: absolute;
+    border-radius: 50%;
+    animation: gradient 4s infinite;
+}
+@keyframes gradient{
+    70%{
+        transform: scale(1.2) translate(50px);
+    }
+}
+.gato div:nth-child(1){
+    height: 90%;
+    width: 80%;
+    background-color: var(--backgroundColor1);
+    left: -20%;
+    top: -10%;
+}
+.gato div:nth-child(2){
+    height: 67%;
+    width: 85%;
+    background-color: var(--backgroundColor2);
+    top: -20%;
+    right: -26%;
+    animation-delay: 1s;
+  }
+  .gato div:nth-child(3){
+    height: 75%;
+    width: 60%;
+    background-color: var(--backgroundColor3);
+    bottom: -15%;
+    right: -5%;
+    animation-delay: 0.3s;
+    border-radius: 30%;
+}
+.gato div:nth-child(4){
+    height: 75%;
+    width: 75%;
+    background-color: var(--backgroundColor4);
+    bottom: -10%;
+    left: -18%;
+    animation-delay: 1.2s;
+}
+.gato:after{
+    position: absolute;
+    content: "";
+    height: 100%;
+    width: 100%;
+    backdrop-filter: blur(80px);
+}
