@@ -3,9 +3,8 @@ import { StatusData } from "./status-data.model";
 
 export interface TaskData {
   id: string,
-  title: string,
-  description: string,
-  createdAt: Date,
-  status: StatusData,
-  priority?: PriorityData
+  content: string,
+  date: Date,
+  isFinished: StatusData,
+  priority: PriorityData
 }

@@ -17,13 +17,14 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     TasksComponent,
     CreateTaskComponent,
-    ListComponent
+    ListComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,9 +40,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatDividerModule,
     MatIconModule,
     MatCheckboxModule,
-    MatToolbarModule
+    MatToolbarModule,
+    HttpClientModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

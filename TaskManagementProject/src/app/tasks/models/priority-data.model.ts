@@ -1,3 +1,4 @@
 export interface PriorityData {
-  level?: string
+  id: number,
+  level: string
 }

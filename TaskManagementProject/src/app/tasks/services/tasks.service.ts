@@ -1,91 +1,105 @@
+import { TaskResponse } from './../models/task-response.model';
 import { StatusData } from './../models/status-data.model';
 import { PriorityData } from './../models/priority-data.model';
 import { Injectable } from '@angular/core';
 import { TaskData } from '../models/task-data.model';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TasksService {
-
-  constructor() { }
+  constructor(private http: HttpClient) {}
 
   public getPriority(): PriorityData[] {
     return [
-      {level: 'baixa'},
-      {level: 'normal'},
-      {level: 'alta'}
+      { id: 1, level: 'baixa' },
+      { id: 2, level: 'normal' },
+      { id: 3, level: 'alta' },
     ];
   }
 
   public getStatus(): StatusData[] {
-    return [
-      {status: 'to do'},
-      {status: 'done'}
-    ];
+    return [{ id: false, status: 'to do' }, { id: true, status: 'done' }];
   }
 
-  public getTasks(): TaskData[] {
+  private getTaskList(): TaskData[] {
     return JSON.parse(localStorage.getItem('TASKS') || '[]');
   }
 
-  public getTasksByStatus(status: string): TaskData[] {
-    const taskList = this.getTasks();
+  public getTasks(): Observable<TaskData[]> {
+    // const tasks = JSON.parse(localStorage.getItem('TASKS') || '[]');
 
-    return taskList.filter(e => e.status.status === status)
+    // return of(tasks);
+
+    return this.http.get<TaskData[]>('https://localhost:7099/Task');
   }
 
-  public getTaskById(id: string): TaskData {
-    const tasks = this.getTasks();
+  public getTasksByStatus(status: string): Observable<TaskData[]> {
+    // const taskList = this.getTaskList();
 
-    return tasks.find((task) => task.id === id) as TaskData;
+    // return taskList.filter((e) => e.isFinished.status === status);
+    return this.http.get<TaskData[]>(`https://localhost:7099/Task/${status}`);
   }
 
-  public createTask(task: TaskData): void {
-    task = {
-      ...task,
-      id: crypto.randomUUID(),
-      createdAt: new Date(),
-      priority: {
-        ...task.priority
-      },
-      status: {
-        status: 'to-do'
-      }
-    };
+  public getTaskById(id: string): Observable<TaskData> {
+    // const tasks = this.getTaskList();
 
-    const taskList = this.getTasks();
+    // return tasks.find((task) => task.id === id) as TaskData;
 
-    taskList.push(task);
-
-    localStorage.setItem('TASKS', JSON.stringify(taskList));
+    return this.http.get<TaskData>(`https://localhost:7099/Task/${id}`);
   }
 
-  public editTask(task: TaskData): void {
-    const taskList = this.getTasks();
-    const taskIndex = taskList.findIndex(t => t.id === task.id);
+  public createTask(task: TaskData): Observable<TaskResponse> {
+    // task = {
+    //   ...task,
+    //   id: crypto.randomUUID(),
+    //   createdAt: new Date(),
+    //   priority: {
+    //     ...task.priority
+    //   },
+    //   status: {
+    //     status: 'to-do'
+    //   }
+    // };
 
-    taskList[taskIndex] = task;
+    // const taskList = this.getTaskList();
 
-    localStorage.setItem('TASKS', JSON.stringify(taskList));
+    // taskList.push(task);
+
+    // localStorage.setItem('TASKS', JSON.stringify(taskList));
+
+    return this.http.post<TaskResponse>('https://localhost:7099/Task', task);
   }
 
-  public deleteTask(id: string): void {
-    const taskList = this.getTasks();
-    const taskIndex = taskList.findIndex(t => t.id === id);
+  public editTask(task: TaskData): Observable<TaskResponse> {
+    // const taskList = this.getTaskList();
+    // const taskIndex = taskList.findIndex(t => t.id === task.id);
 
-    taskList.splice(taskIndex, 1);
+    // taskList[taskIndex] = task;
 
-    localStorage.setItem('TASKS', JSON.stringify(taskList));
+    // localStorage.setItem('TASKS', JSON.stringify(taskList));
+    return this.http.put<TaskResponse>(
+      `https://localhost:7099/Task/${task.id}`,
+      task
+    );
   }
 
-  public changeStatus(id: string): void {
-    const taskList = this.getTasks();
-    const taskIndex = taskList.findIndex(t => t.id === id);
+  public deleteTask(id: string): Observable<any> {
+    // const taskList = this.getTaskList();
+    // const taskIndex = taskList.findIndex((t) => t.id === id);
 
-    const task = taskList[taskIndex];
-    task.status.status = 'done';
+    // taskList.splice(taskIndex, 1);
 
-    localStorage.setItem('TASKS', JSON.stringify(taskList));
+    // localStorage.setItem('TASKS', JSON.stringify(taskList));
+
+    return this.http.delete<any>(`https://localhost:7099/Task/${id}`);
+  }
+
+  public changeStatus(task: TaskData): Observable<TaskResponse> {
+    return this.http.put<TaskResponse>(
+      `https://localhost:7099/Task/${task.id}`,
+      task)
   }
 }

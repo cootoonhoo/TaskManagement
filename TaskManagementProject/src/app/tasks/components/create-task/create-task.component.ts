@@ -1,19 +1,21 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { TasksService } from './../../services/tasks.service';
 import { TaskData } from './../../models/task-data.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { PriorityData } from '../../models/priority-data.model';
 
 @Component({
   selector: 'app-create-task',
   templateUrl: './create-task.component.html',
-  styleUrls: ['./create-task.component.css']
+  styleUrls: ['./create-task.component.css'],
 })
-
 export class CreateTaskComponent implements OnInit {
-
-  constructor(private taskService: TasksService, private router: Router, private activatedRouter: ActivatedRoute) { }
+  constructor(
+    private taskService: TasksService,
+    private router: Router,
+    private activatedRouter: ActivatedRoute
+  ) {}
 
   public form!: FormGroup;
   public task!: TaskData;
@@ -23,8 +25,7 @@ export class CreateTaskComponent implements OnInit {
   ngOnInit(): void {
     this.buildForm();
     this.getPriorities();
-    this.getRouterParam();
-
+    this.taskId = this.activatedRouter.snapshot.params['id'];
     if (this.taskId) {
       this.updateForm();
     }
@@ -34,45 +35,59 @@ export class CreateTaskComponent implements OnInit {
     this.form = new FormGroup({
       id: new FormControl(),
       title: new FormControl(),
-      description: new FormControl(),
-      createdAt: new FormControl(),
+      content: new FormControl(),
+      date: new FormControl(),
       status: new FormGroup({
-        status: new FormControl()
+        status: new FormControl(),
       }),
       priority: new FormGroup({
-        level: new FormControl()
-      })
+        level: new FormControl(),
+      }),
     });
   }
 
   public onSubmit(): void {
-    this.task = this.form.getRawValue();
+    const task = this.form.getRawValue();
 
     if (this.taskId) {
-      this.taskService.editTask(this.task);
-      alert('Tarefa editada com sucesso!');
+      this.taskService.editTask(task).subscribe({
+        next: (res) => {
+          console.log(res);
+          this.router.navigate(['/tasks']);
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
     } else {
-      this.taskService.createTask(this.task);
-      alert('Tarefa cadastrada com sucesso!');
+      this.taskService.createTask(task).subscribe({
+        next: (res) => {
+          console.log(res);
+          this.router.navigate(['/tasks']);
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
     }
-
-
-    this.form.reset();
-    this.router.navigate(['/tasks'])
   }
 
   private getPriorities(): void {
     this.priorities = this.taskService.getPriority();
   }
 
-  private getRouterParam() {
-    this.taskId = this.activatedRouter.snapshot.params['id'];
-    this.updateForm();
-  }
-
   private updateForm(): void {
-    const task = this.taskService.getTaskById(this.taskId);
-    this.form.patchValue(task);
+    this.taskService
+      .getTaskById(this.taskId)
+      .pipe()
+      .subscribe({
+        next: (res) => {
+          const task = res;
+          this.form.patchValue(task);
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
   }
-
 }
