@@ -11,10 +11,12 @@ import { Router } from '@angular/router';
 
 export class LoginService {
 
+  url : string = "https://mindnoteapiwebapp.azurewebsites.net/Person";
+
   constructor(private http: HttpClient, private router: Router) { }
 
   public login(payload: loginRequest):Observable<loginResponse> {
-    return this.http.post<loginResponse>('https://mindnoteapi.azure-api.net/mindnote/Token', payload);
+    return this.http.post<loginResponse>(this.url, payload);
   }
 
   public logout(): void {

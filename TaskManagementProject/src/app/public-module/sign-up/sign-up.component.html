@@ -22,7 +22,8 @@
     style="border: none; color: white; background: none;">
       <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
     </button>
-    <mat-error *ngIf="password.invalid">Por favor digite senhas iguais</mat-error>
+    <mat-error *ngIf="password.errors?.['minlength'] && password.value != ''">Senha deve ter no minímo 6 caracteres</mat-error>
+    <mat-error *ngIf="password.value == ''">Senha é obrigatória</mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
@@ -32,7 +33,7 @@
     style="border: none; color: white; background: none;">
       <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
     </button>
-    <mat-error *ngIf="repassword.invalid || repassword.value != password.value">Por favor digite senhas iguais</mat-error>
+    <mat-error *ngIf="repassword.errors?.['equalsTo']">Por favor digite senhas iguais</mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
@@ -43,8 +44,8 @@
   </mat-form-field>
 
   <div class="buttons">
-    <button type="submit" class="btn btn-outline-info btn-block" [disabled]="signUpForm.invalid" (click)="submitForm()" class="solid">Entrar</button>
-    <button class="btn btn-outline-info btn-block"   routerLink="/home" class="lined" style="background: none;">Voltar</button>
+    <button type="submit" class="btn btn-outline-info btn-block" [disabled]="signUpForm.invalid" (click)="submitForm()" class="solid">Cadastrar</button>
+    <button class="btn btn-outline-info btn-block"   routerLink="" class="lined" style="background: none;">Voltar</button>
   </div>
   </form>
 </div>

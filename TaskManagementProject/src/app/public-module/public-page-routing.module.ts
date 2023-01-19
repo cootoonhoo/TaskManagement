@@ -11,7 +11,7 @@ const routes: Routes = [
     component: PublicPageComponent,
     children: [
       {
-        path: 'home',
+        path: '',
         component: HomePageComponent
       },
       {

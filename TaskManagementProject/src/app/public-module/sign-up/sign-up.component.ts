@@ -28,7 +28,7 @@ export class SignUpComponent {
       Validators.minLength(6),
     ]),
     repassword: new FormControl (null, [FormValidation.equalsTo("password"), Validators.required]),
-    name: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    name: new FormControl('', [Validators.required, Validators.minLength(3)]),
     email: new FormControl('', [Validators.required, Validators.email]),
   });
 
