@@ -30,6 +30,10 @@ form{
   color: rgba(255, 255, 255, 1);
 }
 
+:host ::ng-deep .mdc-text-field:not(.mdc-text-field--disabled) .mdc-floating-label{
+  color: rgba(255, 255, 255, 1);
+}
+
 mat-form-field{
   color: white;
 
@@ -59,7 +63,6 @@ mat-error{
 
 .buttons{
   display: flex;
-
   justify-content: center;
 }
 

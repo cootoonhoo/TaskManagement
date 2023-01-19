@@ -1,4 +1,7 @@
-<form [formGroup]="signUpForm" #f = "ngForm">
+<div class="Content">
+  <h2>Cadatre-se</h2>
+  <hr>
+  <form [formGroup]="signUpForm" #f = "ngForm">
 
   <mat-form-field appearance="fill">
     <mat-label>Nome</mat-label>
@@ -15,7 +18,8 @@
   <mat-form-field appearance="fill">
     <mat-label>Senha</mat-label>
     <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
-    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide"
+    style="border: none; color: white; background: none;">
       <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
     </button>
     <mat-error *ngIf="password.invalid">Por favor digite senhas iguais</mat-error>
@@ -24,7 +28,8 @@
   <mat-form-field appearance="fill">
     <mat-label>Confirme sua senha</mat-label>
     <input matInput [type]="hide ? 'password' : 'text'" formControlName="repassword" required>
-    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide"
+    style="border: none; color: white; background: none;">
       <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
     </button>
     <mat-error *ngIf="repassword.invalid || repassword.value != password.value">Por favor digite senhas iguais</mat-error>
@@ -38,10 +43,8 @@
   </mat-form-field>
 
   <div class="buttons">
-    <button type="submit" class="btn btn-outline-info btn-block" [disabled]="signUpForm.invalid" (click)="submitForm()">Entrar</button>
-
-    <button  class="btn btn-outline-info btn-block" >Voltar</button>
+    <button type="submit" class="btn btn-outline-info btn-block" [disabled]="signUpForm.invalid" (click)="submitForm()" class="solid">Entrar</button>
+    <button class="btn btn-outline-info btn-block"   routerLink="/home" class="lined" style="background: none;">Voltar</button>
   </div>
-
-
-</form>
+  </form>
+</div>
