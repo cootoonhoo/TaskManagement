@@ -7,7 +7,6 @@
         <button class="" (click)="addTask()">
           + Novo Card
         </button>
-      </div>
     </div>
     <div class="col-3 mb-4" *ngFor="let task of tasks">
       <mat-card class="example-card" id="{{task.isFinished.status}}">
@@ -20,7 +19,6 @@
           </div>
         </mat-card-content>
         <mat-card-actions class="d-flex justify-content-center">
-          <mat-checkbox (click)="changeStatus(task)"></mat-checkbox>
           <button mat-icon-button (click)="editTask(task.id)">
             <mat-icon>mode_edit</mat-icon>
           </button>

@@ -98,7 +98,7 @@ export class TasksService {
 
   public changeStatus(taskId: string): Observable<any> {
     return this.http.put<any>(
-      `${this.urlAPI}/ChangeStatus`, {
+      `${this.urlAPI}/ChangeStatus`, {}, {
         params: {
           taskId: taskId
         }

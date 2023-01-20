@@ -1,3 +1,4 @@
+import { PriorityData } from './../../models/priority-data.model';
 import { TaskData } from './../../models/task-data.model';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TasksService } from '../../services/tasks.service';
@@ -13,6 +14,9 @@ export class ListComponent implements OnInit, OnDestroy {
   constructor(private taskService: TasksService, private router: Router) {}
 
   public tasks!: TaskData[];
+  public tasksArrayFiltered : Array<TaskData> = [];
+  public tasksPriorityArray : Array<string> = ["Todas"];
+
   private unsubscribe = new Subject();
   private userId =
     localStorage.getItem('USER_ID') != null
@@ -20,11 +24,16 @@ export class ListComponent implements OnInit, OnDestroy {
       : '';
 
   ngOnInit(): void {
+    this.getPrioritiesList();
     this.getTasks();
     if(this.userId){
       this.taskService.getTasksByStatus(false, this.userId);
     }
+    this.tasksArrayFiltered = this.tasks;
+  }
 
+  ngAfterViewInit(): void {
+    this.activateButton("Todas");
   }
 
   private getTasks(): void {
@@ -43,30 +52,6 @@ export class ListComponent implements OnInit, OnDestroy {
             console.log('Finalizado!');
           },
         });
-    }
-  }
-
-  public getTasksByType(filter: boolean | null): void {
-    if (filter == null && this.userId) {
-      this.taskService
-        .getTasksByUserId(this.userId)
-        .pipe(takeUntil(this.unsubscribe))
-        .subscribe({
-          next: (tasks: TaskData[]) => {
-            this.tasks = tasks;
-          },
-          error: (error: any) => {
-            console.log('Error message:', error);
-          },
-          complete: () => {
-            console.log('Finalizado!');
-          },
-        });
-    } else {
-      if(this.userId && filter != null) {
-        this.taskService.getTasksByStatus(filter, this.userId);
-      }
-
     }
   }
 
@@ -92,22 +77,46 @@ export class ListComponent implements OnInit, OnDestroy {
     this.router.navigate(['/tasks/create']);
   }
 
-  public changeStatus(task: TaskData): void {
-    this.taskService.changeStatus(task.id).subscribe({
-      next: (res) => {
-        console.log(res);
-        this.router.navigate(['/tasks']);
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
+  filterList(event: any){
 
-    this.getTasksByType(false);
-    this.router.navigate(['/tasks']);
+    let levelPriority = event.target.innerHtml
+    console.log(levelPriority)
+    this.activateButton(levelPriority);
+
+    if(levelPriority == "Todas"){
+      this.tasksArrayFiltered = this.tasks;
+    }
+    else {
+      this.tasksArrayFiltered = this.tasks.filter( e => e.priority.level == levelPriority)
+    }
+    console.log(this.tasksArrayFiltered)
+    console.log(this.tasks)
+  }
+
+  activateButton(id: string) {
+
+    let disableButton = document.querySelector(".selected");
+    if(disableButton !== null){
+      disableButton.classList.remove("selected");
+    }
+
+    let button = document.getElementById(id);
+    if(button !== null){
+      button.classList.add("selected");
+    }
+  }
+
+  getPrioritiesList() {
+    let priorityList = this.taskService.getPriority();
+    for (let index = 0; index < priorityList.length; index++) {
+      const priority = priorityList[index];
+      this.tasksPriorityArray.push(priority.level);
+    }
   }
 
   ngOnDestroy(): void {
     this.unsubscribe.complete();
   }
+
+
 }
