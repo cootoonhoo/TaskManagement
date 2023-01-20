@@ -9,10 +9,6 @@ mat-card-content p{
   flex-wrap: wrap;
 }
 
-.priority1 :{
-  background-color:aqua !important;
-}
-
 .NewCard button{
   width: 120px;
   height: 60px;
