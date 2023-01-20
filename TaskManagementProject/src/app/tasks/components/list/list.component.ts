@@ -41,11 +41,19 @@ export class ListComponent implements OnInit, OnDestroy {
   public getTasksByType(filterId: string): void {
     if (filterId == '') {
       this.taskService
-        .getTasks()
-        .pipe(takeUntil(this.unsubscribe))
-        .subscribe((tasks: TaskData[]) => {
+      .getTasks()
+      .pipe(takeUntil(this.unsubscribe))
+      .subscribe({
+        next: (tasks: TaskData[]) => {
           this.tasks = tasks;
-        });
+        },
+        error: (error: any) => {
+          console.log('Error message:', error);
+        },
+        complete: () => {
+          console.log('Finalizado!');
+        },
+      });
     } else {
       this.taskService.getTasksByStatus(filterId);
     }

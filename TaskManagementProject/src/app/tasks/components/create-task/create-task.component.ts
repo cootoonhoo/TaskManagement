@@ -34,10 +34,9 @@ export class CreateTaskComponent implements OnInit {
   public buildForm(): void {
     this.form = new FormGroup({
       id: new FormControl(),
-      title: new FormControl(),
       content: new FormControl(),
       date: new FormControl(),
-      status: new FormGroup({
+      isFinished: new FormGroup({
         status: new FormControl(),
       }),
       priority: new FormGroup({
