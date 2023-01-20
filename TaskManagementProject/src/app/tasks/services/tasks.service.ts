@@ -21,85 +21,62 @@ export class TasksService {
   }
 
   public getStatus(): StatusData[] {
-    return [{ id: false, status: 'to do' }, { id: true, status: 'done' }];
+    return [
+      { id: false, status: 'to do' },
+      { id: true, status: 'done' },
+    ];
   }
 
-  private getTaskList(): TaskData[] {
-    return JSON.parse(localStorage.getItem('TASKS') || '[]');
-  }
+  private urlAPI: string = 'https://mindnoteapiwebapp.azurewebsites.net';
 
   public getTasks(): Observable<TaskData[]> {
-    // const tasks = JSON.parse(localStorage.getItem('TASKS') || '[]');
-
-    // return of(tasks);
-
-    return this.http.get<TaskData[]>('https://localhost:7099/Task');
+    return this.http.get<TaskData[]>(
+      `${this.urlAPI}/Task`
+    );
   }
 
   public getTasksByStatus(status: string): Observable<TaskData[]> {
-    // const taskList = this.getTaskList();
-
-    // return taskList.filter((e) => e.isFinished.status === status);
-    return this.http.get<TaskData[]>(`https://localhost:7099/Task/${status}`);
+    return this.http.get<TaskData[]>(
+      `${this.urlAPI}/Task/ByUserStatus/${status}`
+    );
   }
 
   public getTaskById(id: string): Observable<TaskData> {
-    // const tasks = this.getTaskList();
+    return this.http.get<TaskData>(
+      `${this.urlAPI}/Task/ByTaskId/${id}`
+    );
+  }
 
-    // return tasks.find((task) => task.id === id) as TaskData;
-
-    return this.http.get<TaskData>(`https://localhost:7099/Task/${id}`);
+  public getTaskByUserId(id: string): Observable<TaskData[]> {
+    return this.http.get<TaskData[]>(
+      `${this.urlAPI}/Task/ByUserId/${id}`
+    );
   }
 
   public createTask(task: TaskData): Observable<TaskResponse> {
-    // task = {
-    //   ...task,
-    //   id: crypto.randomUUID(),
-    //   createdAt: new Date(),
-    //   priority: {
-    //     ...task.priority
-    //   },
-    //   status: {
-    //     status: 'to-do'
-    //   }
-    // };
-
-    // const taskList = this.getTaskList();
-
-    // taskList.push(task);
-
-    // localStorage.setItem('TASKS', JSON.stringify(taskList));
-
-    return this.http.post<TaskResponse>('https://localhost:7099/Task', task);
+    return this.http.post<TaskResponse>(
+      `${this.urlAPI}/Task`,
+      task
+    );
   }
 
   public editTask(task: TaskData): Observable<TaskResponse> {
-    // const taskList = this.getTaskList();
-    // const taskIndex = taskList.findIndex(t => t.id === task.id);
-
-    // taskList[taskIndex] = task;
-
-    // localStorage.setItem('TASKS', JSON.stringify(taskList));
     return this.http.put<TaskResponse>(
-      `https://localhost:7099/Task/${task.id}`,
+      `${this.urlAPI}/Task/${task.id}`,
       task
     );
   }
 
   public deleteTask(id: string): Observable<any> {
-    // const taskList = this.getTaskList();
-    // const taskIndex = taskList.findIndex((t) => t.id === id);
-
-    // taskList.splice(taskIndex, 1);
-
-    // localStorage.setItem('TASKS', JSON.stringify(taskList));
-
-    return this.http.delete<any>(`https://localhost:7099/Task/${id}`);
+    return this.http.delete<any>(
+      `${this.urlAPI}/Task/${id}`
+    );
   }
 
   public changeStatus(task: TaskData): Observable<TaskResponse> {
     return this.http.put<TaskResponse>(
-      `https://localhost:7099/Task/${task.id}`,
-      task)
+      `${this.urlAPI}/Task/ChangeStatus/${task.id}`,
+      task
+    );
   }
 }
