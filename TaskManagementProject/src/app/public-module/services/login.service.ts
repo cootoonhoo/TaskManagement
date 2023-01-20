@@ -20,6 +20,6 @@ export class LoginService {
   public logout(): void {
     localStorage.removeItem('USER_TOKEN');
     localStorage.removeItem('USER_ID');
-    this.router.navigate(['/']);
+    this.router.navigate(['/login']);
   }
 }
