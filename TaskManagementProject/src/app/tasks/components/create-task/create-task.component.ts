@@ -1,3 +1,5 @@
+import { UpdateTaskData } from './../../models/update-task-data.model';
+import { CreateTaskData } from './../../models/create-task-data.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TasksService } from './../../services/tasks.service';
 import { TaskData } from './../../models/task-data.model';
@@ -26,6 +28,9 @@ export class CreateTaskComponent implements OnInit {
       ? localStorage.getItem('USER_ID')
       : '';
 
+  private updateTask!: UpdateTaskData;
+  private createTask!: CreateTaskData;
+
   ngOnInit(): void {
     this.buildForm();
     this.getPriorities();
@@ -39,7 +44,7 @@ export class CreateTaskComponent implements OnInit {
     this.form = new FormGroup({
       id: new FormControl(),
       content: new FormControl(),
-      date: new FormControl(),
+      date: new FormControl(new Date()),
       isFinished: new FormGroup({
         status: new FormControl(),
       }),
@@ -52,8 +57,16 @@ export class CreateTaskComponent implements OnInit {
   public onSubmit(): void {
     const task = this.form.getRawValue();
 
-    if (this.taskId) {
-      this.taskService.editTask(task, this.taskId).subscribe({
+    if (this.taskId)
+     {
+      this.updateTask =  {
+        content: task.content,
+        date: task.date,
+        isFinished: task.isFinished,
+        priority: task.priority.level
+      };
+
+      this.taskService.editTask(this.updateTask, this.taskId).subscribe({
         next: (res) => {
           console.log(res);
           this.router.navigate(['/tasks']);
@@ -62,9 +75,15 @@ export class CreateTaskComponent implements OnInit {
           console.log(err);
         },
       });
-    } else {
+    }
+    else {
       if(this.userId){
-        this.taskService.createTask(task, this.userId).subscribe({
+        this.createTask =  {
+          content: task.content,
+          date: task.date,
+          priority: task.priority.level
+        };
+        this.taskService.createTask(this.createTask, this.userId).subscribe({
           next: (res) => {
             console.log(res);
             this.router.navigate(['/tasks']);
