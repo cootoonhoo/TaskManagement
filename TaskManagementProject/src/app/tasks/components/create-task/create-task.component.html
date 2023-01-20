@@ -3,12 +3,6 @@
     <fieldset>
       <legend>Nova tarefa</legend>
       <div class="row my-4">
-        <div class="col-4">
-          <mat-form-field appearance="outline">
-            <mat-label>Titulo</mat-label>
-            <input formControlName="title" matInput />
-          </mat-form-field>
-        </div>
         <div class="col-3">
           <mat-form-field appearance="outline">
             <mat-label>Descrição</mat-label>
@@ -19,7 +13,7 @@
           <mat-form-field appearance="outline">
             <mat-label>Prioridade</mat-label>
             <mat-select formControlName="level">
-              <mat-option *ngFor="let priority of priorities" [value]="priority.level">{{ priority.level}}</mat-option>
+              <mat-option *ngFor="let priority of priorities" [value]="priority.id">{{ priority.level}}</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
