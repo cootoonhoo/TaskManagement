@@ -1,3 +1,4 @@
+import { TokenInterceptor } from './core/token.interceptor';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -7,7 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HomePageComponent } from './public-module/home-page/home-page.component';
 import { BackgroundComponent } from './background/background.component';
 import { CustomHeaderComponent } from './components/custom-header/custom-header.component';
@@ -39,7 +40,7 @@ import { AuthGuard } from './core/auth.guard';
         CreateTaskComponent,
         ListComponent,
     ],
-    providers: [AuthGuard],
+    providers: [AuthGuard, { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }],
     bootstrap: [AppComponent],
     imports: [
         BrowserModule,

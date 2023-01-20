@@ -3,7 +3,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TasksService } from '../../services/tasks.service';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
-import { TaskResponse } from '../../models/task-response.model';
 
 @Component({
   selector: 'app-list',
@@ -22,7 +21,10 @@ export class ListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getTasks();
-    this.taskService.getTasksByStatus('to-do');
+    if(this.userId){
+      this.taskService.getTasksByStatus(false, this.userId);
+    }
+
   }
 
   private getTasks(): void {
@@ -44,8 +46,8 @@ export class ListComponent implements OnInit, OnDestroy {
     }
   }
 
-  public getTasksByType(filterId: string): void {
-    if (filterId == '' && this.userId) {
+  public getTasksByType(filter: boolean | null): void {
+    if (filter == null && this.userId) {
       this.taskService
         .getTasksByUserId(this.userId)
         .pipe(takeUntil(this.unsubscribe))
@@ -61,7 +63,10 @@ export class ListComponent implements OnInit, OnDestroy {
           },
         });
     } else {
-      this.taskService.getTasksByStatus(filterId);
+      if(this.userId && filter != null) {
+        this.taskService.getTasksByStatus(filter, this.userId);
+      }
+
     }
   }
 
@@ -71,7 +76,7 @@ export class ListComponent implements OnInit, OnDestroy {
 
   public deleteTask(id: string): void {
     this.taskService.deleteTask(id).subscribe({
-      next: (res: TaskResponse) => {
+      next: (res: any) => {
         console.log(res);
       },
       error: (error: any) => {
@@ -88,7 +93,7 @@ export class ListComponent implements OnInit, OnDestroy {
   }
 
   public changeStatus(task: TaskData): void {
-    this.taskService.changeStatus(task).subscribe({
+    this.taskService.changeStatus(task.id).subscribe({
       next: (res) => {
         console.log(res);
         this.router.navigate(['/tasks']);
@@ -98,7 +103,7 @@ export class ListComponent implements OnInit, OnDestroy {
       },
     });
 
-    this.getTasksByType('to-do');
+    this.getTasksByType(false);
     this.router.navigate(['/tasks']);
   }
 

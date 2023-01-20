@@ -1,10 +1,11 @@
-import { TaskResponse } from './../models/task-response.model';
 import { StatusData } from './../models/status-data.model';
 import { PriorityData } from './../models/priority-data.model';
 import { Injectable } from '@angular/core';
 import { TaskData } from '../models/task-data.model';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { CreateTaskData } from '../models/create-task-data.model';
+import { UpdateTaskData } from '../models/update-task-data.model';
 
 @Injectable({
   providedIn: 'root',
@@ -27,50 +28,78 @@ export class TasksService {
     ];
   }
 
-  private urlAPI: string = 'https://mindnoteapiwebapp.azurewebsites.net';
+  private urlAPI: string = 'https://mindnoteapiwebapp.azurewebsites.net/Task';
 
-  public getTasksByStatus(status: string): Observable<TaskData[]> {
+  public getTasksByStatus(status: boolean, userId: string): Observable<TaskData[]> {
     return this.http.get<TaskData[]>(
-      `${this.urlAPI}/Task/ByUserStatus/${status}`
+      `${this.urlAPI}/ByUserStatus/`, {
+        params: {
+          userId: userId,
+          isFinished: status
+        }
+      }
     );
   }
 
-  public getTaskById(id: string): Observable<TaskData> {
+  public getTaskById(taskId: string): Observable<TaskData> {
     return this.http.get<TaskData>(
-      `${this.urlAPI}/Task/ByTaskId/${id}`
+      `${this.urlAPI}/ByTaskId`, {
+        params: {
+          taskId: taskId
+        }
+      }
     );
   }
 
-  public getTasksByUserId(id: string): Observable<TaskData[]> {
+  public getTasksByUserId(userId: string): Observable<TaskData[]> {
     return this.http.get<TaskData[]>(
-      `${this.urlAPI}/Task/ByUserId/${id}`
+      `${this.urlAPI}/ByUserId/`, {
+        params: {
+          userId: userId
+        }
+      }
     );
   }
 
-  public createTask(task: TaskData): Observable<TaskResponse> {
-    return this.http.post<TaskResponse>(
-      `${this.urlAPI}/Task`,
-      task
+  public createTask(task: CreateTaskData, userId: string): Observable<any> {
+    return this.http.post<any>(
+      `${this.urlAPI}`,
+      task, {
+        params: {
+          userId: userId
+        }
+      }
     );
   }
 
-  public editTask(task: TaskData): Observable<TaskResponse> {
-    return this.http.put<TaskResponse>(
-      `${this.urlAPI}/Task/${task.id}`,
-      task
+  public editTask(task: UpdateTaskData, taskId: string): Observable<any> {
+    return this.http.put<any>(
+      `${this.urlAPI}/`,
+      task, {
+        params: {
+          taskId: taskId
+        }
+      }
     );
   }
 
-  public deleteTask(id: string): Observable<any> {
+  public deleteTask(taskId: string): Observable<any> {
     return this.http.delete<any>(
-      `${this.urlAPI}/Task/${id}`
+      `${this.urlAPI}`, {
+        params: {
+          taskId: taskId
+        }
+      }
     );
   }
 
-  public changeStatus(task: TaskData): Observable<TaskResponse> {
-    return this.http.put<TaskResponse>(
-      `${this.urlAPI}/Task/ChangeStatus/${task.id}`,
-      task
+  public changeStatus(taskId: string): Observable<any> {
+    return this.http.put<any>(
+      `${this.urlAPI}/ChangeStatus`, {
+        params: {
+          taskId: taskId
+        }
+      }
     );
   }
 }

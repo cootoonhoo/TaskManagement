@@ -21,6 +21,10 @@ export class CreateTaskComponent implements OnInit {
   public task!: TaskData;
   public priorities!: PriorityData[];
   public taskId!: string;
+  private userId =
+    localStorage.getItem('USER_ID') != null
+      ? localStorage.getItem('USER_ID')
+      : '';
 
   ngOnInit(): void {
     this.buildForm();
@@ -49,7 +53,7 @@ export class CreateTaskComponent implements OnInit {
     const task = this.form.getRawValue();
 
     if (this.taskId) {
-      this.taskService.editTask(task).subscribe({
+      this.taskService.editTask(task, this.taskId).subscribe({
         next: (res) => {
           console.log(res);
           this.router.navigate(['/tasks']);
@@ -59,15 +63,18 @@ export class CreateTaskComponent implements OnInit {
         },
       });
     } else {
-      this.taskService.createTask(task).subscribe({
-        next: (res) => {
-          console.log(res);
-          this.router.navigate(['/tasks']);
-        },
-        error: (err) => {
-          console.log(err);
-        },
-      });
+      if(this.userId){
+        this.taskService.createTask(task, this.userId).subscribe({
+          next: (res) => {
+            console.log(res);
+            this.router.navigate(['/tasks']);
+          },
+          error: (err) => {
+            console.log(err);
+          },
+        });
+      }
+
     }
   }
 
