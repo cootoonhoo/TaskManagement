@@ -9,3 +9,12 @@ align-items: center;
 justify-content: center;
 }
 
+app-popup{
+  width: 350px;
+  height: 8vh;
+  position: fixed;
+
+  bottom: 1vh;
+  right: 1vh;
+}
+
