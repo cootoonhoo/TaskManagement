@@ -33,7 +33,7 @@ export class LoginComponent {
       next: (res) => {
         console.log(res);
         localStorage.setItem('USER_TOKEN', res.token);
-        localStorage.setItem('USER_ID', JSON.stringify(res.id));
+        localStorage.setItem('USER_ID', res.id);
         this.router.navigate(['/tasks']);
       },
       error: (err) => {
