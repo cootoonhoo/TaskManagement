@@ -58,11 +58,11 @@ export class CreateTaskComponent implements OnInit {
     const task = this.form.getRawValue();
 
     if (this.taskId)
-     {
+    {
       this.updateTask =  {
         content: task.content,
         date: task.date,
-        isFinished: task.isFinished,
+        isFinished: task.isFinished.id,
         priority: task.priority.level
       };
 
@@ -76,13 +76,15 @@ export class CreateTaskComponent implements OnInit {
         },
       });
     }
-    else {
+    else
+    {
       if(this.userId){
         this.createTask =  {
           content: task.content,
           date: task.date,
           priority: task.priority.level
         };
+
         this.taskService.createTask(this.createTask, this.userId).subscribe({
           next: (res) => {
             console.log(res);
@@ -93,7 +95,6 @@ export class CreateTaskComponent implements OnInit {
           },
         });
       }
-
     }
   }
 
