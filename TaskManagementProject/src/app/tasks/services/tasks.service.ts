@@ -29,12 +29,6 @@ export class TasksService {
 
   private urlAPI: string = 'https://mindnoteapiwebapp.azurewebsites.net';
 
-  public getTasks(): Observable<TaskData[]> {
-    return this.http.get<TaskData[]>(
-      `${this.urlAPI}/Task`
-    );
-  }
-
   public getTasksByStatus(status: string): Observable<TaskData[]> {
     return this.http.get<TaskData[]>(
       `${this.urlAPI}/Task/ByUserStatus/${status}`
@@ -47,7 +41,7 @@ export class TasksService {
     );
   }
 
-  public getTaskByUserId(id: string): Observable<TaskData[]> {
+  public getTasksByUserId(id: string): Observable<TaskData[]> {
     return this.http.get<TaskData[]>(
       `${this.urlAPI}/Task/ByUserId/${id}`
     );
