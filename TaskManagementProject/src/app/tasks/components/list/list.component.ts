@@ -1,3 +1,4 @@
+import { PriorityData } from './../../models/priority-data.model';
 import { TaskData } from './../../models/task-data.model';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TasksService } from '../../services/tasks.service';
@@ -10,8 +11,8 @@ import { Subject, takeUntil } from 'rxjs';
   styleUrls: ['./list.component.css'],
 })
 export class ListComponent implements OnInit, OnDestroy {
+  importancy : number  = 0;
   constructor(private taskService: TasksService, private router: Router) {}
-
   public tasks!: TaskData[];
   private unsubscribe = new Subject();
   private userId =
@@ -24,7 +25,6 @@ export class ListComponent implements OnInit, OnDestroy {
     if(this.userId){
       this.taskService.getTasksByStatus(false, this.userId);
     }
-
   }
 
   private getTasks(): void {
@@ -109,5 +109,16 @@ export class ListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.unsubscribe.complete();
+  }
+
+  public ChangeBg(priority: number){
+      switch (priority) {
+        default:
+          return "#90ee90"
+        case 2:
+          return "#FFCCCB"
+        case 3:
+          return "#FFFFE0"
+      }
   }
 }

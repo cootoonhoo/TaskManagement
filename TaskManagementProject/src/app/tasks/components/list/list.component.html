@@ -10,17 +10,18 @@
       </div>
     </div>
     <div class="col-3 mb-4" *ngFor="let task of tasks">
-      <mat-card class="example-card" id="{{task.isFinished.status}}">
+      <mat-card class="example-card priority{{task.priority}}" id="">
         <mat-card-content>
           <div class="desc">
-            <p>{{ task.content }}</p>
+            <p>{{ task.content }}
+            </p>
+
           </div>
           <div class="data">
             <p>{{ task.date | date: 'dd/MM/YYYY'}}</p>
           </div>
         </mat-card-content>
         <mat-card-actions class="d-flex justify-content-center">
-          <mat-checkbox (click)="changeStatus(task)"></mat-checkbox>
           <button mat-icon-button (click)="editTask(task.id)">
             <mat-icon>mode_edit</mat-icon>
           </button>
