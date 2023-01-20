@@ -1,3 +1,4 @@
+import { PopupComponent } from './../components/popup/popup.component';
 import { MatInputModule } from '@angular/material/input';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -16,7 +17,8 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [
     LoginComponent,
     SignUpComponent,
-    PublicPageComponent
+    PublicPageComponent,
+    PopupComponent
   ],
   imports: [
     CommonModule,
@@ -25,8 +27,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatInputModule,
     ReactiveFormsModule,
     MatIconModule,
-    HttpClientModule
-
+    HttpClientModule,
   ]
 })
 export class PublicPage { }

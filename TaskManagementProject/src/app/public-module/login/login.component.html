@@ -20,7 +20,6 @@
     <button type="submit" [disabled]="loginForm.invalid" class="solid" (click)="submitForm()">Entrar</button>
       <button routerLink="" class="lined" style="background: none;">Voltar</button>
   </div>
-
-
+  <app-popup typeMsg="Error" msg="Usuário ou senha incorretos, tente novamente" *ngIf="LoginFail"></app-popup>
 </form>
 </div>

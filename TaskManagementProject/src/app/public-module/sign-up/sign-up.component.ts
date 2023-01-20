@@ -16,6 +16,8 @@ import { FormValidation } from './form-validation';
   styleUrls: ['./sign-up.component.css'],
 })
 export class SignUpComponent {
+  LoginFail: boolean = false;
+
   constructor(private signUpService: SignUpService, private router: Router) {}
 
   public signUpForm: FormGroup = new FormGroup({
@@ -62,10 +64,11 @@ export class SignUpComponent {
       },
       error: (err) => {
         console.log(err);
-        alert('Esse usuário não esta disponível, tente outro');
+        this.LoginFail = true;
         this.ResetUsername();
       },
     });
+    this.LoginFail = false;
   }
 
   get username() {

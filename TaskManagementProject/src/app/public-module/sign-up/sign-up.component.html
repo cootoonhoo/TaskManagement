@@ -48,4 +48,5 @@
     <button class="btn btn-outline-info btn-block"   routerLink="" class="lined" style="background: none;">Voltar</button>
   </div>
   </form>
+  <app-popup typeMsg="Error" msg="Nome de usuário já está sendo utilizado!" *ngIf="LoginFail"></app-popup>
 </div>

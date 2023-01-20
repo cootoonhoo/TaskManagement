@@ -23,7 +23,6 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { PopupComponent } from './components/popup/popup.component';
 
 
 
@@ -38,7 +37,6 @@ import { PopupComponent } from './components/popup/popup.component';
         TasksComponent,
         CreateTaskComponent,
         ListComponent,
-        PopupComponent,
     ],
     providers: [],
     bootstrap: [AppComponent],

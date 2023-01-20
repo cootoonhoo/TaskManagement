@@ -16,6 +16,8 @@ import { Injectable } from '@angular/core';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
+  LoginFail: boolean = false;
+  LoginSucess: boolean = false;
   constructor(private loginService: LoginService, private router: Router) {}
 
   public loginForm: FormGroup = new FormGroup({
@@ -34,14 +36,17 @@ export class LoginComponent {
         console.log(res);
         localStorage.setItem('USER_TOKEN', res.token);
         localStorage.setItem('USER_ID', JSON.stringify(res.id));
+        this.LoginSucess = true;
         this.router.navigate(['/tasks']);
       },
       error: (err) => {
         console.log(err);
-        alert('Usuário ou senha incorretos, tente novamente');
+        this.LoginFail = true;
         this.loginForm.reset();
       },
     });
+    this.LoginFail = false;
+    this.LoginSucess = false;
   }
 
   get username() {
