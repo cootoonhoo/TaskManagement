@@ -50,12 +50,11 @@ h2{
 
 .Content{
   box-sizing: border-box;
-
+  background-size: 100% 100%;
   width: 90vw;
-  height: auto;
+  height: 90vh;
 
   max-width: 1300px;
-  max-height: 815px;
 
   padding: 30px;
 

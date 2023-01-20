@@ -6,13 +6,13 @@
         <div class="col">
           <mat-form-field appearance="fill">
             <mat-label>Descrição</mat-label>
-            <textarea formControlName="content" matInput></textarea>
+            <textarea formControlName="content" matInput style="height: 250px;"></textarea>
           </mat-form-field>
         </div>
         <div formGroupName="priority" class="col">
           <mat-form-field appearance="fill">
             <mat-label>Prioridade</mat-label>
-            <mat-select formControlName="level">
+            <mat-select formControlName="level" placeholder="baixa" >
               <mat-option *ngFor="let priority of priorities" [value]="priority.id">{{ priority.level}}</mat-option>
             </mat-select>
           </mat-form-field>

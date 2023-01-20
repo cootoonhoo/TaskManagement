@@ -11,8 +11,8 @@ import { Subject, takeUntil } from 'rxjs';
   styleUrls: ['./list.component.css'],
 })
 export class ListComponent implements OnInit, OnDestroy {
+  importancy : number  = 0;
   constructor(private taskService: TasksService, private router: Router) {}
-
   public tasks!: TaskData[];
   public tasksArrayFiltered! : TaskData[];
   public tasksPriorityArray : Array<PriorityData> = [{  id: 0,
@@ -116,5 +116,14 @@ export class ListComponent implements OnInit, OnDestroy {
     this.unsubscribe.complete();
   }
 
-
+  public ChangeBg(priority: number){
+      switch (priority) {
+        default:
+          return "#90ee90"
+        case 2:
+          return "#FFCCCB"
+        case 3:
+          return "#FFFFE0"
+      }
+  }
 }
