@@ -1,8 +1,9 @@
+import { AuthGuard } from './core/auth.guard';
 import { ListComponent } from './tasks/components/list/list.component';
 import { CreateTaskComponent } from './tasks/components/create-task/create-task.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, CanActivate } from '@angular/router';
 
 
 const routes: Routes = [
@@ -15,15 +16,18 @@ const routes: Routes = [
     children: [
       {
         path: 'create',
-        component: CreateTaskComponent
+        component: CreateTaskComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'edit/:id',
-        component: CreateTaskComponent
+        component: CreateTaskComponent,
+        canActivate: [AuthGuard]
       },
       {
         path:'',
-        component: ListComponent
+        component: ListComponent,
+        canActivate: [AuthGuard]
       }
     ]
   },

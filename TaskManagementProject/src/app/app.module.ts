@@ -23,6 +23,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { AuthGuard } from './core/auth.guard';
 
 
 
@@ -38,7 +39,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
         CreateTaskComponent,
         ListComponent,
     ],
-    providers: [],
+    providers: [AuthGuard],
     bootstrap: [AppComponent],
     imports: [
         BrowserModule,

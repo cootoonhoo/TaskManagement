@@ -17,15 +17,14 @@ export class TokenInterceptor implements HttpInterceptor {
   constructor(private loginService: LoginService) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if(request.url.includes("/login") || request.url.includes("/sign-up")) {
+    if(request.url.includes("/token")) {
       return next.handle(request);
     }
 
-    const token = localStorage.getItem("USER_TOKEN");
+    let token = localStorage.getItem("USER_TOKEN");
 
     if (!token) {
-      alert("Usuário não autorizado");
-      this.loginService.logout();
+      token = "";
     }
 
     const cloneResquet = request.clone({
