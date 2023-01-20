@@ -2,9 +2,9 @@
   <div class="row my-4">
     <div class="filter-container d-flex justify-content-center mb-4" componentID="id">
       <div>
-        <button class="filter-btn" mat-raised-button color="primary" (click)="getTasksByType('to-do')">to do</button>
-      <button class="filter-btn" mat-raised-button color="primary" (click)="getTasksByType('done')">done</button>
-      <button class="filter-btn" mat-raised-button color="primary" (click)="getTasksByType('')">all</button>
+        <button class="filter-btn" mat-raised-button color="primary" (click)="getTasksByType(false)">to do</button>
+      <button class="filter-btn" mat-raised-button color="primary" (click)="getTasksByType(true)">done</button>
+      <button class="filter-btn" mat-raised-button color="primary" (click)="getTasksByType(null)">all</button>
       </div>
       <div>
         <button class="filter-btn" mat-raised-button color="primary" (click)="addTask()">

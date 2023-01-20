@@ -3,7 +3,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TasksService } from '../../services/tasks.service';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
-import { TaskResponse } from '../../models/task-response.model';
 
 @Component({
   selector: 'app-list',
@@ -15,39 +14,59 @@ export class ListComponent implements OnInit, OnDestroy {
 
   public tasks!: TaskData[];
   private unsubscribe = new Subject();
+  private userId =
+    localStorage.getItem('USER_ID') != null
+      ? localStorage.getItem('USER_ID')
+      : '';
 
   ngOnInit(): void {
     this.getTasks();
-    this.taskService.getTasksByStatus('to-do');
+    if(this.userId){
+      this.taskService.getTasksByStatus(false, this.userId);
+    }
+
   }
 
   private getTasks(): void {
-    this.taskService
-      .getTasks()
-      .pipe(takeUntil(this.unsubscribe))
-      .subscribe({
-        next: (tasks: TaskData[]) => {
-          this.tasks = tasks;
-        },
-        error: (error: any) => {
-          console.log('Error message:', error);
-        },
-        complete: () => {
-          console.log('Finalizado!');
-        },
-      });
+    if (this.userId) {
+      this.taskService
+        .getTasksByUserId(this.userId)
+        .pipe(takeUntil(this.unsubscribe))
+        .subscribe({
+          next: (tasks: TaskData[]) => {
+            this.tasks = tasks;
+          },
+          error: (error: any) => {
+            console.log('Error message:', error);
+          },
+          complete: () => {
+            console.log('Finalizado!');
+          },
+        });
+    }
   }
 
-  public getTasksByType(filterId: string): void {
-    if (filterId == '') {
+  public getTasksByType(filter: boolean | null): void {
+    if (filter == null && this.userId) {
       this.taskService
-        .getTasks()
+        .getTasksByUserId(this.userId)
         .pipe(takeUntil(this.unsubscribe))
-        .subscribe((tasks: TaskData[]) => {
-          this.tasks = tasks;
+        .subscribe({
+          next: (tasks: TaskData[]) => {
+            this.tasks = tasks;
+          },
+          error: (error: any) => {
+            console.log('Error message:', error);
+          },
+          complete: () => {
+            console.log('Finalizado!');
+          },
         });
     } else {
-      this.taskService.getTasksByStatus(filterId);
+      if(this.userId && filter != null) {
+        this.taskService.getTasksByStatus(filter, this.userId);
+      }
+
     }
   }
 
@@ -56,17 +75,16 @@ export class ListComponent implements OnInit, OnDestroy {
   }
 
   public deleteTask(id: string): void {
-    this.taskService.deleteTask(id)
-    .subscribe({
-      next: (res: TaskResponse) => {
+    this.taskService.deleteTask(id).subscribe({
+      next: (res: any) => {
         console.log(res);
       },
       error: (error: any) => {
-        console.log('Error message:', error)
+        console.log('Error message:', error);
       },
       complete: () => {
         this.getTasks();
-      }
+      },
     });
   }
 
@@ -75,17 +93,17 @@ export class ListComponent implements OnInit, OnDestroy {
   }
 
   public changeStatus(task: TaskData): void {
-    this.taskService.changeStatus(task).subscribe({
+    this.taskService.changeStatus(task.id).subscribe({
       next: (res) => {
-        console.log(res)
+        console.log(res);
         this.router.navigate(['/tasks']);
       },
       error: (err) => {
         console.log(err);
       },
-    });;
+    });
 
-    this.getTasksByType('to-do');
+    this.getTasksByType(false);
     this.router.navigate(['/tasks']);
   }
 
