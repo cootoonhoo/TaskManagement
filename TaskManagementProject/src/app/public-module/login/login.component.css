@@ -34,6 +34,10 @@ form{
   color: rgba(255, 255, 255, 1);
 }
 
+:host ::ng-deep .ngValid{
+  background-color: none;
+}
+
 mat-form-field{
   color: white;
 
@@ -95,7 +99,7 @@ mat-error{
 }
 
 .solid button{
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255,);
 }
 
 button:hover{
@@ -115,8 +119,4 @@ hr{
 h2{
   align-self: center;
   font-weight: 400;
-}
-
-:host ::ng-deep .mat-form-field-label {
-  color: rgb(151, 15, 15);
 }

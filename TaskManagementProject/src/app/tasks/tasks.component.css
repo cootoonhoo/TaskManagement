@@ -1,0 +1,38 @@
+.MenuApp{
+  display: flex;
+  align-self: center;
+  justify-content: space-between;
+}
+
+.SubMenu{
+  display: flex;
+  align-self: center;
+  justify-content: center;
+}
+
+.SubMenu hr{
+  height: 40px;
+  width: 1px;
+  color: white;
+  border: 1px solid white;
+  margin: 0px;
+}
+
+.MenuApp a{
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+    align-self: center;
+    padding: 10px;
+    font-size: 16px;
+}
+
+hr{
+  color: white;
+  margin: 10px;
+}
+
+.MenuApp a:hover{
+  background-color: rgb(255, 255,255, 0.15);
+  border-radius: 2px;
+}

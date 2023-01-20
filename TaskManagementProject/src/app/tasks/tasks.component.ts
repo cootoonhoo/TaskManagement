@@ -12,6 +12,6 @@ import { Injectable } from '@angular/core';
   styleUrls: ['./tasks.component.css']
 })
 export class TasksComponent {
-
-  constructor( public loginService: LoginService) {}
+  constructor( public loginService: LoginService) {
+  }
 }

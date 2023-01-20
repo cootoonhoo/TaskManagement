@@ -1,16 +1,16 @@
 <div class="container mt-4">
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <fieldset>
-      <legend>Nova tarefa</legend>
+      <legend>Nota</legend>
       <div class="row my-4">
         <div class="col">
-          <mat-form-field appearance="outline">
+          <mat-form-field appearance="fill">
             <mat-label>Descrição</mat-label>
             <textarea formControlName="content" matInput></textarea>
           </mat-form-field>
         </div>
         <div formGroupName="priority" class="col">
-          <mat-form-field appearance="outline">
+          <mat-form-field appearance="fill">
             <mat-label>Prioridade</mat-label>
             <mat-select formControlName="level">
               <mat-option *ngFor="let priority of priorities" [value]="priority.id">{{ priority.level}}</mat-option>

@@ -1,3 +1,25 @@
 mat-form-field {
   width: 75%;
 }
+
+legend{
+  color: white;
+}
+
+:host ::ng-deep .mat-mdc-text-field-wrapper{
+  background-color: rgba(255, 255,255, 0.25);
+  color: white;
+  border-radius: 10px;
+}
+
+:host ::ng-deep .mdc-text-field:not(.mdc-text-field--disabled) .mdc-floating-label{
+  color: rgba(255, 255, 255, .75);
+}
+
+:host ::ng-deep .mat-mdc-select-arrow{
+  color: rgba(255,255,255,.54);
+}
+
+:host ::ng-deep .mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input{
+  color: rgba(255, 255, 255, 0.87);
+}

@@ -1,13 +1,13 @@
-<mat-toolbar color="primary">
-  <button mat-button routerLink="/">teste</button>
-  <span class="spacer"></span>
-  <div class="menu">
-    <button mat-button routerLink="/tasks/list">minhas tarefas</button>
-    <!-- <button mat-button routerLink="/tasks/create">cadastrar tarefa</button> -->
-    <button mat-button routerLink="/tasks">minha conta</button>
-    <button mat-button  (click)="loginService.logout()">sair</button>
+<div class="Content">
+  <div class="MenuApp">
+    <img src="../../assets/images/MindNoteMiniLogo.png"
+    style="height: 60px;">
+    <div class="SubMenu">
+      <a routerLink="/tasks">Meus cards</a>
+      <hr>
+      <a (click)="loginService.logout()">Sair</a>
+    </div>
   </div>
-</mat-toolbar>
-
-
+  <hr>
 <router-outlet></router-outlet>
+</div>
