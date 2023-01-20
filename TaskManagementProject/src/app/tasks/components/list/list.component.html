@@ -3,8 +3,8 @@
     <div class="filter-container d-flex justify-content-center mb-4" componentID="id">
       <div>
       </div>
-      <button class="" *ngFor="let priority of tasksPriorityArray" id="{{ priority.id }}" (click) = "filterList($event)"> {{ priority.level }} </button>
       <div class="NewCard">
+        <button class="" *ngFor="let priority of tasksPriorityArray" id="{{ priority.id }}" (click) = "filterList($event)"> {{ priority.level }} </button>
         <button class="" (click)="addTask()">
           + Novo Card
         </button>
@@ -16,7 +16,6 @@
           <div class="desc">
             <p>{{ task.content }}
             </p>
-
           </div>
           <div class="data">
             <p>{{ task.date | date: 'dd/MM/YYYY'}}</p>

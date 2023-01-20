@@ -36,7 +36,7 @@ export class TasksService {
         params: {
           userId: userId,
           isFinished: status,
-          take: 128
+          take: 8
         }
       }
     );
@@ -46,8 +46,7 @@ export class TasksService {
     return this.http.get<TaskData>(
       `${this.urlAPI}/ByTaskId`, {
         params: {
-          taskId: taskId,
-          take: 128
+          taskId: taskId
         }
       }
     );
@@ -58,7 +57,7 @@ export class TasksService {
       `${this.urlAPI}/ByUserId/`, {
         params: {
           userId: userId,
-          take: 128
+          take: 8
         }
       }
     );
