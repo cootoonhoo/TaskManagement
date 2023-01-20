@@ -1,0 +1,13 @@
+<div class="Content">
+  <div class="MenuApp">
+    <img src="../../assets/images/MindNoteMiniLogo.png"
+    style="height: 60px;">
+    <div class="SubMenu">
+      <a routerLink="/tasks">Meus cards</a>
+      <hr>
+      <a (click)="loginService.logout()">Sair</a>
+    </div>
+  </div>
+  <hr>
+<router-outlet></router-outlet>
+</div>

@@ -1,0 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300&family=Inria+Sans:wght@700&display=swap");
+
+.cachorro{
+height: 100vh;
+width: 100vw;
+
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+app-popup{
+  width: 350px;
+  height: 8vh;
+  position: fixed;
+
+  bottom: 1vh;
+  right: 1vh;
+}
+

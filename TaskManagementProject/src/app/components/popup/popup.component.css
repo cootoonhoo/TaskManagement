@@ -1,0 +1,31 @@
+div{
+  border-radius: 15px;
+
+  width: 100%;
+  height: 100%;
+
+  padding: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: white;
+  font-size: 16px;
+  font-family: 'Inria Sans';
+
+  border: 1px white solid;
+  background-color: #9fd86b;
+}
+
+mat-icon{
+  padding-right: 10px;
+}
+
+.Error{
+  background-color: #ff1457;
+}
+
+.Warning{
+  background-color: #fab243;
+}
