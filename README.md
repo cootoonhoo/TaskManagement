@@ -1,8 +1,6 @@
 # 🧠 Mind Notes
 A application for those who never wants to forget any thoughts!
-<p align="center">
-    ![MindNotes](./captures/web.gif)
-</p>
+![MindNotes](./Captures/web.gif)
 
 ## About
 This project was a ending module project, where we used Angular Routing to build an aplication. Also we needed to make a API integration for all note posting and login/singup process.
